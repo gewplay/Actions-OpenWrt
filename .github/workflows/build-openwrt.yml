@@ -14,8 +14,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -27,8 +25,8 @@ env:
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   FREE_UP_DISK: false
-  SSH_ACTIONS: false
-  UPLOAD_BIN_DIR: false
+  SSH_ACTIONS: true
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
