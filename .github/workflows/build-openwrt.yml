@@ -29,7 +29,7 @@ env:
   FREE_UP_DISK: false
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: false
+  UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -98,19 +98,20 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) V=s || make -j1 V=s || make -j$(nproc) || make -j1
         echo "::set-output name=status::success"
+        mv bin/targets/*/*/packages bin/packages/bin-packages
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true' 
       with:
         name: OpenWrt_directory
-        path: openwrt/bin
+        path: openwrt/bin/
 
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin
+        cd openwrt/bin/targets/*/*
         echo "::set-env name=FIRMWARE::$(pwd)"
         echo "::set-output name=status::success"
 
