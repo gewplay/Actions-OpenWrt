@@ -31,4 +31,4 @@ Build OpenWrt using GitHub Actions
 ## License
 
 [MIT](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE) © P3TERX
-[fox](https://www.myfox.top)
+[fox](https://www.myfox.top/)
